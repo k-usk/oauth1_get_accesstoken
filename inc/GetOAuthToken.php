@@ -4,32 +4,18 @@
  */
 class GetOAuthToken
 {
-    // const REQUEST_TOKEN_URL  = 'http://wprest.local/oauth1/request';
-    // const AUTHORIZE_URL      = 'http://wprest.local/oauth1/authorize';
-    // const ACCESS_TOKEN_URL   = 'http://wprest.local/oauth1/access';
-
     public $REQUEST_TOKEN_URL = '';
     public $AUTHORIZE_URL = '';
     public $ACCESS_TOKEN_URL = '';
     public $CONSUMER_KEY = '';
     public $CONSUMER_SECRET = '';
 
-    /**
-     * コントストラク
-     * セッションの初期化をやる
-     */
     public function __construct()
     {
         $domain = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"];
         $this->REQUEST_TOKEN_URL = $domain.'/oauth1/request';
         $this->AUTHORIZE_URL     = $domain.'/oauth1/authorize';
         $this->ACCESS_TOKEN_URL  = $domain.'/oauth1/access';
-
-        // $this->CONSUMER_KEY = getenv('WP_CLIENT_KEY');
-        // $this->CONSUMER_SECRET = getenv('WP_CLIENT_SECRET');
-
-        // $this->CONSUMER_KEY = 'NUmeekveMbG8';
-        // $this->CONSUMER_SECRET = 'E2k9ClRfElFCCzZGlcL9tWesqKV0zHmwHJEUvSF5m7oiFgq5';
 
         if (!isset($_SESSION)) {
             session_start();
@@ -45,14 +31,12 @@ class GetOAuthToken
         $this->CONSUMER_SECRET = $c_secret;
 
         $oauth = new \OAuth($this->CONSUMER_KEY, $this->CONSUMER_SECRET);
-        // リクエストトークン取得
         $request_token = $oauth->getRequestToken($this->REQUEST_TOKEN_URL);
 
         if (!$request_token) {
             throw new Exception('リクエストトークンの取得に失敗');
         }
 
-        // リクエストトークンをセッションに保存する
         $_SESSION['request_token'] = $request_token['oauth_token'];
         $_SESSION['request_token_secret'] = $request_token['oauth_token_secret'];
         $_SESSION['consumer_key'] = $this->CONSUMER_KEY;

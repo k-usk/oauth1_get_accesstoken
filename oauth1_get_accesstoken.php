@@ -21,11 +21,11 @@ class oauth1_get_accesstoken{
 
   public function add_plugin_admin_menu() {
     add_users_page(
-        'Get AccessToken', // page_title（オプションページのHTMLのタイトル）
-        'Get AccessToken', // menu_title（メニューで表示されるタイトル）
-        'administrator', // capability
-        'get-accesstoken', // menu_slug（URLのスラッグこの例だとoptions-general.php?page=hello-world）
-        [$this,'display_plugin_admin_page'] // function
+        'Get AccessToken',
+        'Get AccessToken',
+        'administrator',
+        'get-accesstoken',
+        [$this,'display_plugin_admin_page']
     );
   }
 
