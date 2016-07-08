@@ -43,8 +43,8 @@ Authorizeをクリックすると、`verification token`が表示されるので
 
 ![](img/readme05.jpg)
 
-詳しくは以下のブログを参考にしてください。  
-xxx
+詳しくは以下の記事を参考にしてください。  
+[WP REST APIのOAuth1.0a認証用のアクセストークン取得プラグインを作った](http://mrlittlebig.com/blog/post-1111/)
 
 ##ライセンス
 [GPLv2+](http://www.gnu.org/licenses/gpl-2.0.html)
